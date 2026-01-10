@@ -11,7 +11,7 @@ def multi_leiden(adata, res_list, markers):
 
     return adata
   
-# 根据情况更改项目参数
+# 需要根据情况进行修改的参数
 res_list = np.arange(0.1, 1.1, 0.1)
 markers = {
     "B_cell": ["CD79A", "MS4A1", "BANK1"],
