@@ -28,7 +28,7 @@ markers = {
     "SMC": ["CNN1", "TAGLN", "DES"],  # Smooth_muscle_cell
     "T_NK": ["CD3D", "CD3E", "KLRB1"],
 }
-adata = scell.base.multi_leiden(adata, res_list=res_list, markers=markers)
+adata = multi_leiden_dotplot_umapplot(adata, res_list=res_list, markers=markers)
 adata.write_h5ad(f"{dir}/adata_leiden.h5ad")
 
 ############################################################################################################# 
