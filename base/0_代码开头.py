@@ -1,4 +1,5 @@
 # environmet: scenv
+%load_ext autotime
 import warnings
 warnings.filterwarnings("ignore")
 
