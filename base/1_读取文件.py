@@ -7,4 +7,4 @@ def read_files(filename, pattern):
     adata = sc.concat([sc.read_h5ad(f) for f in files])
 
     return adata
-adata = read_files(filename="/home/students/zhangtao/research/singlecell/database", pattern="*(韩国).h5ad") # 需要根据实际的工作路径修改
+adata = read_files(filename="/home/students/zhangtao/research/singlecell/database", pattern="*(韩国).h5ad") # 需要根据实际的工作路径和文件名称修改
