@@ -39,5 +39,4 @@ def scvi(adata, outdir):
     sc.pl.embedding(adata=adata, basis="umap_after", color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None)
 
     return(adata)
-
 adata = scvi(adata=adata, outdir=dir)
