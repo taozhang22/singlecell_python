@@ -1,3 +1,4 @@
+# Environment: scenv
 ############################################################################################################# 
 # 设置全局参数, 根据情况修改
 #############################################################################################################
@@ -23,3 +24,15 @@ counts = pd.read_csv("GSE132465(韩国)/GSE132465_GEO_processed_CRC_10X_raw_UMI_
 adata=sc.AnnData(counts)
 adata.var_names_make_unique()
 adata.write_h5ad("GSE132465(韩国)/h5ad/GSE132465(韩国)_1.h5ad")
+
+
+adata = sc.read_h5ad("GSE132465(韩国)/h5ad/GSE132465(韩国)_1.h5ad")
+meta1 = pd.read_csv("GSE132465(韩国)/GSE132465_GEO_processed_CRC_10X_cell_annotation.txt.gz", index_col=0, sep="\t")
+meta1 = meta1[["Sample", "Class", "Cell_type", "Cell_subtype"]]
+display(meta1)
+
+meta2 = pd.read_excel("GSE132465(韩国)/GSE132465(韩国).xlsx", index_col=0)
+meta2 = meta2[["MSI"]]
+display(meta2)
+
+meta = meta1.join(meta2, on="Sample", how="inner")
