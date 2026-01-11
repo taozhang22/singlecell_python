@@ -31,7 +31,6 @@ def multi_leiden_dotplot_umapplot(adata, res_list, markers):
 
     return adata
 adata = multi_leiden_dotplot_umapplot(adata, res_list=res_list, markers=markers)
-adata.write_h5ad(f"{dir}/adata_leiden.h5ad")
 
 ############################################################################################################# 
 # 计算每个簇的前十的差异表达基因
