@@ -30,7 +30,6 @@ def multi_leiden_dotplot_umapplot(adata, res_list, markers, dotplot):
     sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
 
     return adata
-
 adata = multi_leiden_dotplot_umapplot(adata, res_list=res_list, markers=markers, dotplot=TRUE)
 adata.write_h5ad(f"{dir}/adata_leiden.h5ad")
 
