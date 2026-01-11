@@ -5,4 +5,4 @@ def create_code_file(wd, dir):
     os.makedirs("{dir}/raw")
     os.makedirs("{dir}/log")
     os.makedirs("{dir}/output")
-create_code_file(wd="/home/students/zhangtao/research/singlecell", dir="database")
+create_database_file(wd="/home/students/zhangtao/research/singlecell", dir="database")
