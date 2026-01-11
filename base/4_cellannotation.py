@@ -26,7 +26,7 @@ def multi_leiden_umapplot(adata, res_list, markers):
 
     for res in res_list:
         sc.tl.leiden(adata, resolution=res, key_added=f"leiden_{res:.2f}")
-        sc.pl.dotplot(adata, markers, groupby=k, standard_scale="var", title=f"Resolution {r:.2f}")
+        sc.pl.dotplot(adata, markers, groupby=f"leiden_{res:.2f}", standard_scale="var", title=f"Resolution {res:.2f}")
     sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
 
     return adata
