@@ -1,17 +1,6 @@
 ############################################################################################################# 
-# 算出umap图中分为多少个簇，并且绘制气泡图和umap图
-############################################################################################################# 
-def multi_leiden_dotplot_umapplot(adata, res_list, markers, dotplot):
-    import scanpy as sc
-
-    for res in res_list:
-        sc.tl.leiden(adata, resolution=res, key_added=f"leiden_{res:.2f}")
-        sc.pl.dotplot(adata, markers, groupby=k, standard_scale="var", title=f"Resolution {r:.2f}")
-    sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
-
-    return adata
-  
 # 需要根据情况进行修改的参数
+############################################################################################################# 
 res_list = np.arange(0.1, 1.1, 0.1)
 markers = {
     "B_cell": ["CD79A", "MS4A1", "BANK1"],
@@ -28,6 +17,20 @@ markers = {
     "SMC": ["CNN1", "TAGLN", "DES"],  # Smooth_muscle_cell
     "T_NK": ["CD3D", "CD3E", "KLRB1"],
 }
+
+############################################################################################################# 
+# 算出umap图中分为多少个簇，并且绘制气泡图和umap图
+############################################################################################################# 
+def multi_leiden_dotplot_umapplot(adata, res_list, markers, dotplot):
+    import scanpy as sc
+
+    for res in res_list:
+        sc.tl.leiden(adata, resolution=res, key_added=f"leiden_{res:.2f}")
+        sc.pl.dotplot(adata, markers, groupby=k, standard_scale="var", title=f"Resolution {r:.2f}")
+    sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
+
+    return adata
+
 adata = multi_leiden_dotplot_umapplot(adata, res_list=res_list, markers=markers, dotplot=TRUE)
 adata.write_h5ad(f"{dir}/adata_leiden.h5ad")
 
