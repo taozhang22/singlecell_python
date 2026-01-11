@@ -30,5 +30,4 @@ def qc(adata, min_genes, min_cells, pct_counts_mt):
     sc.pp.scrublet(adata, batch_key="Sample")
     adata = adata[~adata.obs["predicted_doublet"]].copy()
     return adata
-
 adata = qc(adata=adata, min_genes=100, min_cells=3, pct_counts_mt=20)
