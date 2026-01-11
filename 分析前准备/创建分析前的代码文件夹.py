@@ -1,4 +1,4 @@
-def create_code_file(wd, filename):
+def create_code_file(wd, dir):
     import os
     os.chdir(wd)
 
