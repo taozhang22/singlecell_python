@@ -16,10 +16,7 @@ def scvi(adata, outdir):
     sc.pl.pca_variance_ratio(adata=adata, n_pcs=50, log=True)
     sc.pp.neighbors(adata=adata)
     sc.tl.umap(adata=adata)
-
-    # 绘制批次校正前的UMAP图
-    adata.obsm["X_umap_before"] = adata.obsm["X_umap"].copy()
-    sc.pl.embedding(adata=adata, basis="umap_before", color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None)
+    sc.pl.umap(adata, color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None) # 绘制批次校正前的UMAP图
     
     # scvi分析
     scvi.settings.seed = 0
@@ -33,10 +30,7 @@ def scvi(adata, outdir):
     adata.obsm["X_scVI"] = model.get_latent_representation()
     sc.pp.neighbors(adata=adata, use_rep="X_scVI")
     sc.tl.umap(adata=adata)
-
-    # 绘制批次校正后的UMAP图
-    adata.obsm["X_umap_after"] = adata.obsm["X_umap"].copy()
-    sc.pl.embedding(adata=adata, basis="umap_after", color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None)
+    sc.pl.umap(adata, color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None) # 绘制批次校正后的UMAP图
 
     return(adata)
 adata = scvi(adata=adata, outdir=dir)
