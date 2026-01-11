@@ -1,5 +1,5 @@
 conda activate scenv
-nohup papermill "GSE200997(印第安纳大学)/GSE200997(印第安纳大学).ipynb" \
-  "output/GSE200997(印第安纳大学)_output.ipynb" \
+nohup papermill "/home/students/zhangtao/research/singlecell/python/sister/Script/raw/base.ipynb" \
+  "/home/students/zhangtao/research/singlecell/python/sister/Script/output/base_output.ipynb" \
   -k scenv \
-  > "log/GSE200997(印第安纳大学).log" 2>&1 &
+  > "/home/students/zhangtao/research/singlecell/python/sister/Script/log/base.log" 2>&1 &
