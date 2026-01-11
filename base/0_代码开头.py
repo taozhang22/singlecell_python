@@ -11,8 +11,6 @@ def prepare_environment(dir):
     import matplotlib.pyplot as plt
     import seaborn as sns
     import scanpy as sc
-    import scvi
-    import singlecell as scell
     os.chdir("/home/students/zhangtao/research/singlecell/python/Sister")
 
     print(f"Current python version: {sys.version}")
