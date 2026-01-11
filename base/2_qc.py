@@ -16,6 +16,7 @@ def qc(adata, min_genes, min_cells, pct_counts_mt):
     sc.pl.scatter(adata, x="total_counts", y="pct_counts_mt", ax=axes[0], show=False)
     sc.pl.scatter(adata, x="total_counts", y="n_genes_by_counts", ax=axes[1], show=False)
     plt.tight_layout(); plt.show(); plt.close(fig)
+    
     fig, axes = plt.subplots(5, 1, figsize=(0.3 * adata.obs["Sample"].nunique(), 15))
     for i, key in enumerate(["n_genes_by_counts", "total_counts", "pct_counts_mt", "pct_counts_ribo", "pct_counts_hb"]):
         sc.pl.violin(adata, keys=key, groupby="Sample", jitter=0.4, rotation=45, show=False, ax=axes[i])
