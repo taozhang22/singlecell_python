@@ -1,12 +1,12 @@
 ############################################################################################################# 
 # 算出umap图中分为多少个簇，并且绘制气泡图和umap图
 ############################################################################################################# 
-def multi_leiden_dotplot_umapplot(adata, res_list, markers):
+def multi_leiden_dotplot_umapplot(adata, res_list, markers, dotplot):
     import scanpy as sc
 
     for res in res_list:
         sc.tl.leiden(adata, resolution=res, key_added=f"leiden_{res:.2f}")
-        sc.pl.dotplot(adata, markers, groupby=f"leiden_{res:.2f}", standard_scale="var", title=f"Resolution {res:.2f}")
+        if dotplot: sc.pl.dotplot(adata, markers, groupby=k, standard_scale="var", title=f"Resolution {r:.2f}")
     sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
 
     return adata
