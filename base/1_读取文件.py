@@ -1,3 +1,9 @@
+
+# 设置全局参数
+dir = "sister/result/base" # 根据需要修改，这个是你的sister下的目录，例如base、infercnv等
+os.makedirs(dir, exist_ok=True)
+
+
 def read_files(filename, pattern):
     from pathlib import Path
     import scanpy as sc
