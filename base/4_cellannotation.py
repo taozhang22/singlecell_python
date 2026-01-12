@@ -107,16 +107,14 @@ def celltype_annotation(adata, my_res, legend_fontsize, outdir, ct_map, markers)
     return adata
 adata = celltype_annotation(adata=adata, my_res=my_res, legend_fontsize=None, outdir=dir, ct_map=ct_map, markers=markers)
 
-
-
-# 获取到含有完整count的adata对象
-def adata_all_counts(adata,
-                    file_adata_include_all_counts="result/base/qc.h5ad",
-                    outdir_adata_include_all_counts="result/base/adata_all_counts.h5ad"):
+############################################################################################################# 
+# 注释，画出注释完毕的气泡图和umap图
+############################################################################################################# 
+def adata_all_counts(adata, file_adata_include_all_counts, outdir_adata_include_all_counts):
     import scanpy as sc
 
     obs_df = adata.obs["Celltype"].copy()
     adata = sc.read_h5ad(file_adata_include_all_counts)
     adata.obs["Celltype"] = obs_df
     adata.write_h5ad(outdir_adata_include_all_counts)
-
+adata_all_counts(adata=adata, file_adata_include_all_counts=f"{dir}/qc.h5ad", outdir_adata_include_all_counts=f"{dir}/adata.h5ad")
