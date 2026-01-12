@@ -32,3 +32,4 @@ def qc(adata, min_genes, min_cells, pct_counts_mt):
     adata = adata[~adata.obs["predicted_doublet"]].copy()
     return adata
 adata = qc(adata=adata, min_genes=100, min_cells=3, pct_counts_mt=20)
+adata.write_h5ad(f"{dir}/qc.h5ad")
