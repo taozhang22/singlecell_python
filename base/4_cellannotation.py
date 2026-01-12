@@ -34,9 +34,15 @@ def multi_leiden_dotplot_umapplot(adata, res_list, markers):
 adata = multi_leiden_dotplot_umapplot(adata=adata, res_list=res_list, markers=markers)
 
 ############################################################################################################# 
+# 参数
+############################################################################################################# 
+# 细胞注释阶段用到的全局变量，根据研究的实际情况进行修改
+my_res = 0.5
+
+############################################################################################################# 
 # 计算每个簇的前十的差异表达基因
 ############################################################################################################# 
-def deg(adata, my_res, outdir="result/base/"):
+def deg(adata, my_res, outdir):
     import scanpy as sc
     
     sc.tl.rank_genes_groups(adata, groupby=f"leiden_{my_res:.2f}", method="wilcoxon")
@@ -45,10 +51,7 @@ def deg(adata, my_res, outdir="result/base/"):
     top10.to_csv(f"{outdir}/top10_deg.csv", index=False)
 
     return adata
-#####################################################使用案例#################################################################
-# 暂停，根据情况更改项目参数
-my_res = 0.3
-adata = scell.base.deg(adata, my_res, outdir=dir)
+adata = deg(adata=adata, my_res=my_res, outdir=dir)
 
 # 将细胞进行注释
 def celltype_annotation(
