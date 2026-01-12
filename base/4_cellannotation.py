@@ -22,7 +22,7 @@ markers = {
 ############################################################################################################# 
 # 算出umap图中分为多少个簇，并且绘制气泡图和umap图
 ############################################################################################################# 
-def multi_leiden_umapplot(adata, res_list, markers):
+def multi_leiden_dotplot_umapplot(adata, res_list, markers):
     import scanpy as sc
 
     for res in res_list:
@@ -31,7 +31,7 @@ def multi_leiden_umapplot(adata, res_list, markers):
     sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
 
     return adata
-adata = multi_leiden_umapplot(adata=adata, res_list=res_list, markers=markers)
+adata = multi_leiden_dotplot_umapplot(adata=adata, res_list=res_list, markers=markers)
 
 ############################################################################################################# 
 # 计算每个簇的前十的差异表达基因
