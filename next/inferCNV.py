@@ -27,7 +27,7 @@ def prepare_infercnv(
 adata_scvi = prepare_infercnv(dir=dir, adata_input=adata_input, tumor=tumor)
 
 ############################################################################################################# 
-# 去除批次效应
+# 去除批次效应，引用的base文件夹的去除批次效应文件
 #############################################################################################################
 def scvi(adata, outdir):
     import scanpy as sc
@@ -89,9 +89,9 @@ var_df = pd.read_csv("../../resource/inferCNV/hg38_gencode_v27.txt", sep="\t", i
 adata.var = var_df.join(adata.var, how="right")
 
 cnv.tl.infercnv(adata, reference_key="label", reference_cat=["Control"], window_size=250)
-ax = cnv.pl.chromosome_heatmap(adata, groupby="label", dendrogram=False)
-ax.figure.savefig(f"{dir}/chromosome_heatmap_label.png")
-plt.show(); plt.close()
+ax_dict = cnv.pl.chromosome_heatmap(adata, groupby="label", dendrogram=True, show=False)
+fig = next(iter(ax_dict.values())).figure
+fig.savefig(f"{dir}/chromosome_heatmap_label.pdf", bbox_inches="tight")
 
 ############################################################################################################# 
 # 计算每个组的平均cnv分数
@@ -111,3 +111,5 @@ order = (adata.obs.groupby("label")["cnv_score_cell"].median().sort_values(ascen
 order.remove("Control")
 order.append("Control")
 sns.boxplot(data=adata.obs, x="label", y="cnv_score_cell", order=order, showfliers=False)
+
+
