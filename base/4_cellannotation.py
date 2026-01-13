@@ -118,3 +118,4 @@ def adata_all_counts(adata, file_adata_include_all_counts, outdir_adata_include_
     adata.obs["Celltype"] = obs_df
     adata.write_h5ad(outdir_adata_include_all_counts)
 adata_all_counts(adata=adata, file_adata_include_all_counts=f"{dir}/qc.h5ad", outdir_adata_include_all_counts=f"{dir}/adata.h5ad")
+adata.write_h5ad(f"{dir}/celltype_annotated.h5ad")
