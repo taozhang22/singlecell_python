@@ -106,6 +106,7 @@ x = adata.obsm["X_cnv"].toarray()
 x = StandardScaler().fit_transform(x)
 x = MinMaxScaler(feature_range=(-1, 1)).fit_transform(x)
 adata.obs["cnv_score_cell"] = (x * x).sum(axis=1)
+adata.write_h5ad(f"{dir}/infercnv.h5ad")
 
 order = (adata.obs.groupby("label")["cnv_score_cell"].median().sort_values(ascending=False).index.tolist())
 order.remove("Control")
