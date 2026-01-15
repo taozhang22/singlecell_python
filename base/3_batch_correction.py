@@ -34,3 +34,4 @@ def scvi(adata, outdir):
 
     return(adata)
 adata = scvi(adata=adata, outdir=dir)
+adata.write_h5ad(f"{dir}/scvi.h5ad")
