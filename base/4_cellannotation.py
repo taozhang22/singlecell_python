@@ -32,6 +32,7 @@ def multi_leiden_dotplot_umapplot(adata, res_list, markers):
 
     return adata
 adata = multi_leiden_dotplot_umapplot(adata=adata, res_list=res_list, markers=markers)
+adata.write_h5ad(f"{dir}/leiden.h5ad")
 
 ############################################################################################################# 
 # 参数
