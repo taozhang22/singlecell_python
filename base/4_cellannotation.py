@@ -106,6 +106,7 @@ def celltype_annotation(adata, my_res, legend_fontsize, outdir, ct_map, markers)
 
     return adata
 adata = celltype_annotation(adata=adata, my_res=my_res, legend_fontsize=None, outdir=dir, ct_map=ct_map, markers=markers)
+adata.write_h5ad(f"{dir}/celltype_annotated.h5ad")
 
 ############################################################################################################# 
 # 注释，画出注释完毕的气泡图和umap图
@@ -118,4 +119,3 @@ def adata_all_counts(adata, file_adata_include_all_counts, outdir_adata_include_
     adata.obs["Celltype"] = obs_df
     adata.write_h5ad(outdir_adata_include_all_counts)
 adata_all_counts(adata=adata, file_adata_include_all_counts=f"{dir}/qc.h5ad", outdir_adata_include_all_counts=f"{dir}/adata.h5ad")
-adata.write_h5ad(f"{dir}/celltype_annotated.h5ad")
