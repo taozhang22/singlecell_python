@@ -107,9 +107,46 @@ x = MinMaxScaler(feature_range=(-1, 1)).fit_transform(x)
 adata.obs["cnv_score_cell"] = (x * x).sum(axis=1)
 adata.write_h5ad(f"{dir}/infercnv.h5ad")
 
-order = (adata.obs.groupby("label")["cnv_score_cell"].median().sort_values(ascending=False).index.tolist())
-order.remove("Control")
-order.append("Control")
-sns.boxplot(data=adata.obs, x="label", y="cnv_score_cell", order=order, showfliers=False)
+obs_df = adata.obs[["label", "cnv_score_cell"]].copy()
+obs_df["label"] = obs_df["label"].astype(str)
+orders = (obs_df.groupby("label")["cnv_score_cell"].median().sort_values(ascending=False).index.tolist())
+orders.remove("Control")
+orders.append("Control")
 
+sns.boxplot(data=obs_df, x="label", y="cnv_score_cell", order=orders, showfliers=False)
+plt.xlabel("Group")
+plt.ylabel("CNV Score")
 
+############################################################################################################# 
+# 计算各个组的差异分析的p值
+############################################################################################################# 
+from scipy.stats import mannwhitneyu
+U, p = mannwhitneyu(
+    x = obs_df[obs_df["label"] != "0"]["cnv_score_cell"],
+    y = obs_df[obs_df["label"] == "Control"]["cnv_score_cell"],
+    alternative="two-sided")
+print(f"Mann-Whitney U test p-value: {p}")
+
+U, p = mannwhitneyu(
+    x = obs_df[obs_df["label"] != "1"]["cnv_score_cell"],
+    y = obs_df[obs_df["label"] == "Control"]["cnv_score_cell"],
+    alternative="two-sided")
+print(f"Mann-Whitney U test p-value: {p}")
+
+U, p = mannwhitneyu(
+    x = obs_df[obs_df["label"] != "2"]["cnv_score_cell"],
+    y = obs_df[obs_df["label"] == "Control"]["cnv_score_cell"],
+    alternative="two-sided")
+print(f"Mann-Whitney U test p-value: {p}")
+
+U, p = mannwhitneyu(
+    x = obs_df[obs_df["label"] != "3"]["cnv_score_cell"],
+    y = obs_df[obs_df["label"] == "Control"]["cnv_score_cell"],
+    alternative="two-sided")
+print(f"Mann-Whitney U test p-value: {p}")
+
+U, p = mannwhitneyu(
+    x = obs_df[obs_df["label"] != "4"]["cnv_score_cell"],
+    y = obs_df[obs_df["label"] == "Control"]["cnv_score_cell"],
+    alternative="two-sided")
+print(f"Mann-Whitney U test p-value: {p}")
