@@ -12,18 +12,11 @@ adata_input = "result/base/adata.h5ad"
 my_res = 0.4
 
 ############################################################################################################# 
-# 准备
+# 准备，获取文件
 #############################################################################################################
-def prepare_infercnv(dir, adata_input, tumor):
-    import os
-    import scanpy as sc
-    
-    adata = sc.read_h5ad(adata_input)
-    adata = adata[adata.obs["Celltype"] == "Epithelial"].copy()
-    adata_scvi = adata[adata.obs['Class'].isin(tumor)].copy()
-
-    return adata_scvi
-adata_scvi = prepare_infercnv(dir=dir, adata_input=adata_input, tumor=tumor)
+adata = sc.read_h5ad(adata_input)
+adata = adata[adata.obs["Celltype"] == "Epithelial"].copy()
+adata_scvi = adata[adata.obs['Class'].isin(tumor)].copy()
 
 ############################################################################################################# 
 # 去除批次效应，引用的base文件夹的去除批次效应文件
@@ -60,7 +53,7 @@ def scvi(adata, outdir):
     sc.pl.umap(adata, color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None) # 绘制批次校正后的UMAP图
 
     return(adata)
-adata = scvi(adata=adata_scvi, outdir=dir)
+adata_scvi = scvi(adata=adata_scvi, outdir=dir)
 
 ############################################################################################################# 
 # 将数据进行分簇，然后绘制出umap图
@@ -73,7 +66,7 @@ def multi_leiden_umapplot(adata, res_list):
     sc.pl.umap(adata=adata, color=[f"leiden_{res:.2f}" for res in res_list], legend_loc="on data")
 
     return adata
-adata = multi_leiden_umapplot(adata=adata_scvi, res_list=np.arange(0.1, 1.1, 0.1))
+adata_scvi = multi_leiden_umapplot(adata=adata_scvi, res_list=np.arange(0.1, 1.1, 0.1))
 
 ############################################################################################################# 
 # 制作cnv分析需要的label标签，读入染色体位置文件，后进行分析，画出染色体cnv图
