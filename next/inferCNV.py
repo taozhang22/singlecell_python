@@ -4,8 +4,7 @@
 #############################################################################################################
 # 全局参数，根据情况修改
 import infercnvpy as cnv
-dir = "result/inferCNV"
-os.makedirs(dir, exist_ok=True)
+
 tumor = ['Tumor', 'Border']
 normal = ["Normal"]
 adata_input = "result/base/adata.h5ad"
