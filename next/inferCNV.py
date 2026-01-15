@@ -53,6 +53,7 @@ def scvi(adata, outdir):
 
     return(adata)
 adata_scvi = scvi(adata=adata_scvi, outdir=dir)
+adata_scvi.write_h5ad(f"{dir}/scvi.h5ad")
 
 ############################################################################################################# 
 # 将数据进行分簇，然后绘制出umap图
@@ -66,6 +67,7 @@ def multi_leiden_umapplot(adata, res_list):
 
     return adata
 adata_scvi = multi_leiden_umapplot(adata=adata_scvi, res_list=np.arange(0.1, 1.1, 0.1))
+adata_scvi.write_h5ad(f"{dir}/leiden.h5ad")
 
 ############################################################################################################# 
 # 制作cnv分析需要的label标签，读入染色体位置文件，后进行分析，画出染色体cnv图
