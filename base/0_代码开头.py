@@ -1,4 +1,7 @@
 # environmet: scenv
+import time
+start = time.time()
+
 %load_ext autotime
 import warnings
 warnings.filterwarnings("ignore")
@@ -16,3 +19,5 @@ os.chdir("/home/students/zhangtao/research/singlecell/python/sister") # 需要�
 print(f"Current python version: {sys.version}")
 !conda list
 pd.set_option("display.width", 1000)
+
+#代码结尾
