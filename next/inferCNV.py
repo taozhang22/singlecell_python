@@ -4,6 +4,7 @@
 #############################################################################################################
 # 全局参数，根据情况修改
 import infercnvpy as cnv
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 tumor = ['Tumor', 'Border']
 normal = ["Normal"]
