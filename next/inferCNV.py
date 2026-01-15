@@ -3,6 +3,7 @@
 # 设置参数
 #############################################################################################################
 # 全局参数，根据情况修改
+# 全局参数，根据情况修改
 import infercnvpy as cnv
 dir = "result/inferCNV"
 tumor = ['Tumor', 'Border']
@@ -13,14 +14,10 @@ my_res = 0.4
 ############################################################################################################# 
 # 准备
 #############################################################################################################
-def prepare_infercnv(
-    dir="result/inferCNV",
-    adata_input="result/base/adata.h5ad",
-    tumor=['Tumor', 'Border']):
+def prepare_infercnv(dir, adata_input, tumor):
     import os
     import scanpy as sc
-    os.makedirs(dir, exist_ok=True)
-
+    
     adata = sc.read_h5ad(adata_input)
     adata = adata[adata.obs["Celltype"] == "Epithelial"].copy()
     adata_scvi = adata[adata.obs['Class'].isin(tumor)].copy()
