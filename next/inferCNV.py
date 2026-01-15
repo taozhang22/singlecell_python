@@ -24,6 +24,8 @@ def prepare_infercnv(
     adata = sc.read_h5ad(adata_input)
     adata = adata[adata.obs["Celltype"] == "Epithelial"].copy()
     adata_scvi = adata[adata.obs['Class'].isin(tumor)].copy()
+
+    return adata_scvi
 adata_scvi = prepare_infercnv(dir=dir, adata_input=adata_input, tumor=tumor)
 
 ############################################################################################################# 
