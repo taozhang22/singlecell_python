@@ -20,6 +20,9 @@ print(f"Current python version: {sys.version}")
 !conda list
 pd.set_option("display.width", 1000)
 
+dir = "sister/result/base" # 根据需要修改，这个是你的sister下的目录，例如base、infercnv等
+os.makedirs(dir, exist_ok=True)
+
 ############################################################################################################# 
 # 代码结尾
 #############################################################################################################
