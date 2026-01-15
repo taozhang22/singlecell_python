@@ -20,4 +20,10 @@ print(f"Current python version: {sys.version}")
 !conda list
 pd.set_option("display.width", 1000)
 
-#代码结尾
+############################################################################################################# 
+# 代码结尾
+#############################################################################################################
+import time
+end = time.time()
+time_elapsed = end - start
+print(f"Time elapsed: {time_elapsed/60:.2f} minutes")
