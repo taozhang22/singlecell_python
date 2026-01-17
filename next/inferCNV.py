@@ -42,7 +42,7 @@ def scvi(adata, outdir):
     scvi.settings.seed = 0
     scvi.model.SCVI.setup_anndata(adata=adata, layer="counts", batch_key="Sample")
     model = scvi.model.SCVI(adata=adata, n_layers=2, n_latent=30)
-    model.train()
+    model.train(enable_progress_bar=False)
     model.save(f"{outdir}/scvi_model", overwrite=True)
     
     # 查看批次效应去除后的效果
