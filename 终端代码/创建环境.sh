@@ -20,3 +20,4 @@ pip install gseapy
 pip install sccoda
 pip install liana
 pip install cellphonedb
+pip install palantir
