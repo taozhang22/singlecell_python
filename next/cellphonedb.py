@@ -1,8 +1,6 @@
+from cellphonedb.src.core.methods import cpdb_statistical_analysis_method
 
-from cellphonedb.src.core.methods import cpdb_analysis_method
-
-
-cpdb_results = cpdb_analysis_method.call(
+cpdb_results = cpdb_statistical_analysis_method.call(
          cpdb_file_path = "../../resource/cellphonedb/cellphonedb.zip",
          meta_file_path = f"{dir}/temporary_file/meta.txt",
          counts_file_path = "result/base/adata.h5ad",
