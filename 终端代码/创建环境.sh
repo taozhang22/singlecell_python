@@ -18,3 +18,5 @@ pip install harmonypy
 pip install infercnvpy
 pip install gseapy
 pip install sccoda
+pip install liana
+pip install cellphonedb
