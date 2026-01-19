@@ -100,7 +100,6 @@ x = adata.obsm["X_cnv"].toarray()
 x = StandardScaler().fit_transform(x)
 x = MinMaxScaler(feature_range=(-1, 1)).fit_transform(x)
 adata.obs["cnv_score_cell"] = (x * x).sum(axis=1)
-adata.write_h5ad(f"{dir}/infercnv.h5ad")
 
 obs_df = adata.obs[["label", "cnv_score_cell"]].copy()
 obs_df["label"] = obs_df["label"].astype(str)
@@ -145,3 +144,14 @@ U, p = mannwhitneyu(
     y = obs_df[obs_df["label"] == "Control"]["cnv_score_cell"],
     alternative="two-sided")
 print(f"Mann-Whitney U test p-value: {p}")
+
+############################################################################################################# 
+# 修改标签
+############################################################################################################# 
+adata.obs["epi"] = np.select(
+    [adata.obs["label"].astype(str).isin(["0","1","4"]), adata.obs["label"].astype(str).isin(["2","3","Control"])],
+    ["cancer", "Normal"],
+    default="Unknown"
+)
+adata.obs["epi"] = adata.obs["epi"].astype("category")
+adata.write_h5ad(f"{dir}/infercnv.h5ad")
