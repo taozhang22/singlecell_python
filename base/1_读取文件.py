@@ -3,6 +3,7 @@
 ############################################################################################################# 
 # 读取本研究需要的adata文件
 #############################################################################################################
+# 方法一：
 def read_files(filename, pattern):
     from pathlib import Path
     import scanpy as sc
@@ -13,3 +14,8 @@ def read_files(filename, pattern):
 
     return adata
 adata = read_files(filename="/home/students/zhangtao/research/singlecell/database", pattern="*(韩国).h5ad") # 需要根据实际的工作路径和文件名称修改
+
+# 方法二
+patterns = ["GSE132465", "GSE144735"] # 根据实际想要纳入的数据集名称修改
+filenames = [f"../../database/{pattern}/python/{pattern}.h5ad" for pattern in patterns]
+adata = sc.concat([sc.read_h5ad(f) for f in filenames])
