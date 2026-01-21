@@ -4,6 +4,7 @@
 conda activate base
 conda create -n scenv python=3.10.14 -y
 conda activate scenv
+conda install r-base=4.5.2 -y
 conda install scanpy -y
 pip install ipykernel
 python -m ipykernel install --user --name=scenv --display-name "scenv"
