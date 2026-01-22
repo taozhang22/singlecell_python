@@ -14,7 +14,7 @@ def scvi(adata, outdir):
     sc.pp.highly_variable_genes(adata=adata, n_top_genes=3000, batch_key="Sample", subset=True)
     sc.tl.pca(adata)
     sc.pl.pca_variance_ratio(adata=adata, n_pcs=50, log=True)
-    sc.pp.neighbors(adata=adata)
+    sc.pp.neighbors(adata=adata, , n_pcs=30)
     sc.tl.umap(adata=adata)
     sc.pl.umap(adata, color=["Sample", "Class"], title=["Sample", "Class"], legend_loc=None) # 绘制批次校正前的UMAP图
     
