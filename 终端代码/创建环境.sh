@@ -23,3 +23,4 @@ pip install liana
 pip install cellphonedb
 pip install palantir
 pip install scvelo
+pip install datatable
