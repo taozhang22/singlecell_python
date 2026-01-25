@@ -1,3 +1,4 @@
+%load_ext autotime
 import os
 import pandas as pd
 import datatable as dt
