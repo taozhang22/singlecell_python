@@ -5,7 +5,6 @@
 import time
 start = time.time()
 
-%load_ext autotime
 import warnings
 warnings.filterwarnings("ignore")
 
