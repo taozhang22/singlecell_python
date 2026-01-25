@@ -1,8 +1,9 @@
 # Environment: scenv
 import os
 import pandas as pd
-import scanpy as sc
 import datatable as dt
+import matplotlib.pyplot as plt
+import scanpy as sc
 os.chdir("/home/yang/research/bioinformation/singlecell/database") # 根据情况修改工作路径
 
 # 参数，根据实际情况修改
