@@ -28,3 +28,4 @@ adata = adata[adata.obs["pct_counts_mt"] < pct_counts_mt].copy()
 # 去除双细胞
 sc.pp.scrublet(adata, batch_key="Sample")
 adata = adata[~adata.obs["predicted_doublet"]].copy()
+adata.write_h5ad(f"{dir}/qc.h5ad")
