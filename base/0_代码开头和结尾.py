@@ -15,6 +15,7 @@ os.makedirs(f"{dir}/Script/output", exist_ok=True)
 # 代码开头
 #############################################################################################################
 # environmet: scenv
+%load_ext autotime
 import time
 start = time.time()
 
