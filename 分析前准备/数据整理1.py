@@ -1,4 +1,7 @@
 %load_ext autotime
+import warnings
+warnings.filterwarnings("ignore")
+
 import os
 from pathlib import Path
 import pandas as pd
