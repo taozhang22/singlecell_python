@@ -30,6 +30,50 @@ meta2 = meta2[["MSI"]]
 meta = meta1.join(meta2, on="Sample", how="inner")
 adata.obs = meta.copy()
 
+###################################################################################
+p = Path("GSE231559/data")
+seen = set()
+for f in p.iterdir():
+    name = f.name
+    if "_barcodes" in name:
+        seen.add(name.split("barcodes", 1)[0])
+    elif "_features" in name:
+        seen.add(name.split("features", 1)[0])
+    elif "_matrix" in name:
+        seen.add(name.split("matrix", 1)[0])
+prefixes = sorted(seen)
+
+adatas = []
+for prefix in prefixes:
+    adata = sc.read_10x_mtx(path="GSE231559/data", var_names="gene_symbols", cache=True, prefix=prefix)
+    adata.obs["Sample"] = prefix.split("_")[0]
+    adatas.append(adata)
+adata = sc.concat(adatas)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 质量控制图
 adata.var["mt"] = adata.var_names.str.startswith("MT-")
 adata.var["ribo"] = adata.var_names.str.startswith(("RPS", "RPL"))
