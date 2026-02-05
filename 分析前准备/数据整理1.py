@@ -61,6 +61,7 @@ barcodes = pd.read_csv(f"{dir}/GSE178318_barcodes.tsv.gz", header=None, sep="\t"
 barcodes.index.name = None
 genes = pd.read_csv(f"{dir}/GSE178318_genes.tsv.gz", header=None, sep="\t", index_col=1)
 genes.index.name = None
+genes.columns = ["gene_id"]
 
 adata = sc.AnnData(X=mtx.X, obs=barcodes, var=genes)
 adata.obs["Sample"] = ["_".join(x.split("_")[1:3]) for x in adata.obs_names]
