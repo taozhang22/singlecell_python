@@ -57,10 +57,14 @@ adata = sc.concat(adatas)
 ###################################################################################################
 dir = "GSE178318"
 mtx = sc.read_mtx(f"{dir}/GSE178318_matrix.mtx.gz").T
-barcodes = pd.read_csv(f"{dir}/GSE178318_barcodes.tsv.gz", header=None, sep="\t")
-genes = pd.read_csv(f"{dir}/GSE178318_genes.tsv.gz", header=None, sep="\t")
-adata = sc.AnnData(X=mtx.X, obs=pd.DataFrame(index=barcodes[0]), var=pd.DataFrame(index=genes[1]))
+barcodes = pd.read_csv(f"{dir}/GSE178318_barcodes.tsv.gz", header=None, sep="\t", index_col=0)
+barcodes.index.name = None
+genes = pd.read_csv(f"{dir}/GSE178318_genes.tsv.gz", header=None, sep="\t", index_col=1)
+genes.index.name = None
+
+adata = sc.AnnData(X=mtx.X, obs=barcodes, var=genes)
 adata.obs["Sample"] = ["_".join(x.split("_")[1:3]) for x in adata.obs_names]
+adata.obs.index.name = None
 adata.write_h5ad(f"{dir}/python/{dir}.h5ad")
 
 
