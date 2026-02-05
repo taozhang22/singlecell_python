@@ -54,7 +54,13 @@ for prefix in prefixes:
     adatas.append(adata)
 adata = sc.concat(adatas)
 
-
+###################################################################################################
+dir = "GSE178318"
+mtx = sc.read_mtx(f"{dir}/GSE178318_matrix.mtx.gz").T
+barcodes = pd.read_csv(f"{dir}/GSE178318_barcodes.tsv.gz", header=None, sep="\t")
+genes = pd.read_csv(f"{dir}/GSE178318_genes.tsv.gz", header=None, sep="\t")
+adata = sc.AnnData(X=mtx.X, obs=pd.DataFrame(index=barcodes[0]), var=pd.DataFrame(index=genes[1]))
+adata.obs["Sample"] = ["_".join(x.split("_")[1:3]) for x in adata.obs_names]
 
 
 
