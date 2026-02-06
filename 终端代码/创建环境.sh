@@ -6,6 +6,7 @@ conda create -n scenv python=3.13 -y
 conda activate scenv
 conda install r-base=4.4.1 -y
 conda install scanpy -y
+conda install rpy2 -y
 pip install ipykernel
 python -m ipykernel install --user --name=scenv --display-name "scenv"
 pip install papermill
