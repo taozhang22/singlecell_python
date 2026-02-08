@@ -8,7 +8,7 @@ import pandas as pd
 import datatable as dt
 import matplotlib.pyplot as plt
 import scanpy as sc
-os.chdir("/home/yang/research/bioinformation/singlecell/database") # 根据实际工作路径进行修改
+os.chdir("/media/yang/9EBA46B1BA46862D/research/bioinformation/singlecell/database/") # 根据实际工作路径进行修改
 
 # 以下参数根据实际情况进行修改
 dir = "GSE132465"
