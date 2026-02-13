@@ -2,7 +2,7 @@
 # 创建scenv环境
 ############################################################################################################# 
 conda activate base
-conda create -n scenv python=3.13 -y
+conda create -n scenv python=3.10 -y
 conda activate scenv
 conda install r-base=4.4.1 -y
 conda install scanpy -y
